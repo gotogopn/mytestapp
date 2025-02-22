@@ -1,0 +1,27 @@
+
+services:
+  flaskapp:
+    build: 
+      context: . 
+      dockerfile:  ./myapp/Dockerfile  # Specify your Dockerfile if it's named something other than 'Dockerfile'
+    environment:
+      FLASK_APP: ./myapp/app.py  # Specify the entry point for your Flask app
+      SECRET_KEY: your_secret_key
+      MONGO_URI: mongodb://mongo:27017/myDB
+    volumes: 
+      - ./static/uploads:/myapp/static/uploads
+    ports:
+      - "5001:5000"
+    depends_on:
+      - mongo
+  
+  mongo:
+    container_name: MongoDB
+    hostname: mongo
+    ports:
+      - 27017:27017
+    image: mongo:latest
+    volumes:
+      - mongo_data:/data/db  # Persist MongoDB data
+volumes:
+  mongo_data:

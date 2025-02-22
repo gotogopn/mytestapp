@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>retailer dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #16e5d4;
+        }
+
+        /* Container */
+        .container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 30px 40px;
+            position: relative;
+        }
+
+        /* Title */
+        .dashboard-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            background: #04146cca;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #acb4a7;
+        }
+
+        /* Form */
+        .retailer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Input Group */
+        .input-group {
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+            outline: none;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: #1e3c72;
+            background: #fff;
+        }
+
+        .input-group textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            background: #1e3c72;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #2a5298;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        function showPopup() {
+            alert("policy is in sale queue!");
+        }
+    </script>
+    
+    <div class="container">
+        <!-- Logout Button -->
+        <form method="POST" action="{{ url_for('logout') }}">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+
+
+        <!-- dashboard Title -->
+        <h2 class="dashboard-title">retailer dashboard</h2>
+
+        <!-- Form -->
+        <form method="POST" action="{{ url_for('retailer_post_article') }}" enctype="multipart/form-data" class="retailer-form">
+            <!-- Article Title -->
+            <div class="input-group">
+                <label for="title"> policy details</label>
+                <input type="text" id="title" name="title" placeholder="Enter policy Details" required>
+            </div>
+            <!-- Description -->
+            <div class="input-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Enter a brief description" required></textarea>
+            </div>
+            <!-- fryp Price -->
+            <div class="input-group">
+                <label for="fryp_price">fryp Price</label>
+                <input type="number" id="fryp_price" name="fryp_price" placeholder="Enter fryp price" required>
+            </div>
+            
+            <!-- sale fryp date 
+            <div class="input-group">
+                <label for="sale_date">sale Date</label>
+                <input type="datetime-local" id="Test_DatetimeLocal" name="sale_date" placeholder="Enter sale date and time" required>
+            </div>  -->
+
+            <!-- sale fryp Date -->
+            <div class="input-group">
+                <label for="sale_date_time">sale Date Time</label>
+                <input type="datetime-local" id="sale_date_time" name="sale_date_time" placeholder="YYYY-MM-DDTHH:MM" required>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="input-group">
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <!-- Submit Button 
+            <button type="submit" class="submit-btn">Post policy for sale</button>-->
+            <button class="submit-btn" onclick="showPopup()">Post policy for sale</button>
+ 
+
+
+    </div>
+</body>
+</html>
